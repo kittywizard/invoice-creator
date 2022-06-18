@@ -2,8 +2,11 @@ import styled from "styled-components"
 
 export const Container = styled.div`
     display: flex;
-    justify-content:space-evenly;
+    flex-direction: column;
+    justify-content:center;
     align-items: center;
-    color: white;
-    background-color: #131A22;
+    font-family: 'Lexend Deca', sans-serif;
+    background-color: #f9f9f9;
+    margin:0;
+    padding:0;
 `

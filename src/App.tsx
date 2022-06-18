@@ -1,13 +1,20 @@
 import React from 'react';
 import { Container } from './styles/container';
+import Header from './components/Header';
 
-const App:React.FC = () => (
+const App:React.FC = () => {
+
+  return (
   <>
   <Container>
-    test
+      <Header />
+
+      <div>
+        other content would go here...
+      </div>
   </Container>
   
   </>
-)
+)}
 
 export default App;
