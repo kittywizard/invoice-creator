@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
-export const StyledHeader = styled.header`
+export const StyledForm = styled.form`
     display: flex;
-    width: 100%;
-    
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 100%;
     font-family: 'Lexend Deca', sans-serif;
-    background-color: #0ffeee;
 `
