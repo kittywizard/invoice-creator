@@ -5,4 +5,9 @@ export const StyledSuccess = styled.div`
     flex-direction: column;
     justify-content: center;
 
+`;
+
+export const StyledSuccessHeader = styled.h3`
+    font-size: 3rem;
+    color: #1aacac;
 `

@@ -1,44 +1,85 @@
-import { StyledForm } from "./form-style";
-import styled from "styled-components";
+import { StyledForm, InputLabel, InputText } from "./form-style";
 import Button from "../button/Button";
+import { useState, useRef } from "react";
 
-export default function Form() {
+interface iState  {
+    form: {
+        name: string,
+        email: string
+    }
+}
 
-    const InputText = styled.input`
-        border: none;
-        padding: 0.5em;
-        border-radius: 10px;
-        background-color: rgb(200, 226, 255);
-        font-family: 'Lexend Deca', sans-serif;
-        max-width: 600px;
-    `;
+interface iFormProps {
+  
+    submitFunction: any
+    
+}
 
-    const InputLabel = styled.label`
-        margin: 0.52em;
+const Form:React.FC<iFormProps> = ({submitFunction}) => {
 
-    `;
+    const [formState, setFormState] = useState<iState["form"]>({
+        name: "",
+        email: ""
+    });
+
+    //keeps focus as you type on form
+        //think probably a state refresh thing with styled components?
+    const inputNameRef = useRef<HTMLInputElement>(null);
+    const inputEmailRef = useRef<HTMLInputElement>(null);
+
+
+    function handleChange(event: any) {
+        setFormState(prevState => {
+            return {
+                ...prevState,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
 
     return (
         <>
-        <StyledForm>
+        <StyledForm
+            onSubmit={() => submitFunction(false)}
+        >
             <>
                 <InputLabel htmlFor="name">
                     Name:
                 </InputLabel>
-                <InputText type="text" placeholder="name" name="name"/>     
+                <InputText 
+                    type="text" 
+                    placeholder="name" 
+                    name="name"
+                    value={formState.name}
+                    onChange={(event) => handleChange(event)}
+                    ref={inputNameRef}
+                    autoFocus={inputNameRef.current === document.activeElement}
+                />     
             </>
 
             <>
                 <InputLabel htmlFor="email">
                     Email:
                 </InputLabel>
-                <InputText type="email" placeholder="email" name="email"/>
+                <InputText 
+                    type="email" 
+                    placeholder="email" 
+                    name="email"
+                    value={formState.email}
+                    onChange={(event) => handleChange(event)}
+                    ref={inputEmailRef}
+                    autoFocus={inputEmailRef.current === document.activeElement}
+                />
             
             </>
 
-            <Button displayName="subMIT"/>
+            <Button 
+                displayName="submit"
+            />
 
         </StyledForm>
         </>
     )
 }
+
+export default Form;

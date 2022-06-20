@@ -4,7 +4,6 @@ export default function Header() {
     return (
         <StyledHeader>
                 its a form        
-
         </StyledHeader>
     )
 }

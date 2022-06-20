@@ -2,27 +2,30 @@ import React, { useState } from 'react';
 import { Container } from './styles/container';
 import Header from './components/header/Header';
 import Form from './components/form/Form';
+import Success from './components/success/success';
 
 interface iState {
-  //declare types here
-  people: {
-    name: string
-    age: number
-    url: string
-    note?: string
-  }[] //declares this as an array of objects
+  displayForm: boolean
 }
 
 const App:React.FC = () => {
 
-  const [people, setPeople] = useState<iState["people"]>([]);
+  const [displayForm, setDisplayForm] = useState<iState["displayForm"]>(true);
 
   return (
   <>
   <Container>
-      <Header />
-
-      <Form/>
+      {displayForm &&
+          <Header />
+      }
+    
+      {displayForm ?
+        <Form 
+          submitFunction={setDisplayForm}
+        />
+        :
+        <Success />
+      }
   </Container>
   
   </>
